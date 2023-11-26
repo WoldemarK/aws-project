@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: aws
+    restart: always
+    hostname: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: aws
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 123
+
+  aws-project:
+    image:  aws-project:latest
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"

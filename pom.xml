@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>aws-project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>aws-project</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <junit.version>4.13.2</junit.version>
+        <mockito-core.version>5.3.1</mockito-core.version>
+        <org.flywaydb.version>9.22.3</org.flywaydb.version>
+        <assertj-core.version>3.24.1</assertj-core.version>
+        <aws-sdk-java.version>2.20.109</aws-sdk-java.version>
+        <javax.xml.bind.version>2.3.1</javax.xml.bind.version>
+        <org.postgresql.version>42.5.1</org.postgresql.version>
+        <io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
+        <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+        <io.projectreactor.version>3.5.1</io.projectreactor.version>
+        <org.projectlombok.version>1.18.30</org.projectlombok.version>
+        <spring-cloud-aws-sqs.version>3.0.1</spring-cloud-aws-sqs.version>
+        <r2dbc-postgresql.version>0.8.10.RELEASE</r2dbc-postgresql.version>
+        <junit-jupiter-engine.version>5.10.1</junit-jupiter-engine.version>
+        <software.amazon.awscdk.version>1.204.0</software.amazon.awscdk.version>
+        <com.google.code.findbugs.version>3.0.2</com.google.code.findbugs.version>
+        <spring-boot-starter-test.version>3.1.2</spring-boot-starter-test.version>
+        <spring-cloud-aws-messaging.version>2.4.4</spring-cloud-aws-messaging.version>
+        <spring-boot-starter-webflux.version>3.1.3</spring-boot-starter-webflux.version>
+        <spring-boot-starter-data-r2dbc.version>3.1.2</spring-boot-starter-data-r2dbc.version>
+        <spring-boot-starter-security.version>3.1.2</spring-boot-starter-security.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <version>${spring-boot-starter-webflux.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${org.postgresql.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot-starter-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <version>${io.projectreactor.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+            <version>${spring-boot-starter-data-r2dbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${org.flywaydb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.r2dbc</groupId>
+            <artifactId>r2dbc-postgresql</artifactId>
+            <version>${r2dbc-postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter-engine.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot-starter-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${com.google.code.findbugs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${io.jsonwebtoken.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${javax.xml.bind.version}</version>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.awspring.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-aws-starter</artifactId>-->
+        <!--            <version>${spring-cloud-aws-sqs.version}</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.awspring.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-aws-sqs</artifactId>-->
+        <!--            <version>${spring-cloud-aws-sqs.version}</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.awspring.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-aws-messaging</artifactId>-->
+        <!--            <version>${spring-cloud-aws-messaging.version}</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>software.amazon.awssdk</groupId>-->
+        <!--            <artifactId>aws-sdk-java</artifactId>-->
+        <!--            <version>${aws-sdk-java.version}</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>software.amazon.awscdk</groupId>-->
+        <!--            <artifactId>sqs</artifactId>-->
+        <!--            <version>${software.amazon.awscdk.version}</version>-->
+        <!--        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
