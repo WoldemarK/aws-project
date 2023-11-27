@@ -2,7 +2,7 @@ package com.example.awsproject.secyrity;
 
 import com.example.awsproject.model.IUser;
 import com.example.awsproject.secyrity.exception.UnauthorizedException;
-import com.example.awsproject.service.IUserService;
+import com.example.awsproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class AuthenticationManager implements ReactiveAuthenticationManager {
 
-    private final IUserService userService;
+    private final UserService userService;
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {

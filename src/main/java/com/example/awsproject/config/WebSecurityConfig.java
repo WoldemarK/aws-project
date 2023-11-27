@@ -40,7 +40,8 @@ public class WebSecurityConfig {
                 .authenticated()
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint((swe , e) -> {
+                .authenticationEntryPoint((swe , e) ->
+                {
                     log.error("IN securityWebFilterChain - unauthorized error: {}", e.getMessage());
                     return Mono.fromRunnable(() -> swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED));
                 })

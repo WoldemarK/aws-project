@@ -2,7 +2,7 @@ package com.example.awsproject.secyrity;
 
 import com.example.awsproject.model.IUser;
 import com.example.awsproject.secyrity.exception.AuthException;
-import com.example.awsproject.service.IUserService;
+import com.example.awsproject.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class SecurityService {
 
-    private final IUserService userService;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     @Value("${jwt.secret}")
     private String secret;

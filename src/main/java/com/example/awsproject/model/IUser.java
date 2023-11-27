@@ -20,24 +20,16 @@ import java.util.List;
 public class IUser {
     @Id
     private Long id;
-    @Column("status")
     private Status status;
-    @Column("username")
     private String username;
-    @Column("password")
     private String password;
-    @Column("firstName")
     private String firstName;
-    @Column("lastName")
     private String lastName;
-    @Column("enabled")
     private boolean enabled;
-
-    @Column("rol")
     private IUserRole role;
 
-    @ToString.Exclude
-    private List<IEvent> IEvents;
+//    @ToString.Exclude
+//    private List<Event> Events;
 
 
     @JsonFormat(pattern = "dd/MM/yyyy")

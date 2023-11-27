@@ -7,7 +7,7 @@ import com.example.awsproject.secyrity.CustomPrincipal;
 import com.example.awsproject.secyrity.SecurityService;
 import com.example.awsproject.secyrity.dto.AuthRequestDto;
 import com.example.awsproject.secyrity.dto.AuthResponseDto;
-import com.example.awsproject.service.IUserService;
+import com.example.awsproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 public class AuthRestControllerV1 {
 
     private final SecurityService securityService;
-    private final IUserService userService;
+    private final UserService userService;
     private final UserMapper userMapper;
 
 

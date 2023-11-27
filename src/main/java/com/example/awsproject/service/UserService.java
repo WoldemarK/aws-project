@@ -2,7 +2,8 @@ package com.example.awsproject.service;
 
 import com.example.awsproject.model.IUser;
 import com.example.awsproject.model.IUserRole;
-import com.example.awsproject.repository.IUserRepository;
+import com.example.awsproject.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,14 +15,10 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @Service
-public class IUserService {
-    private final IUserRepository userRepository;
+@RequiredArgsConstructor
+public class UserService {
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    @Autowired
-    public IUserService(IUserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public Mono<IUser> registerUser(IUser user) {
         return userRepository.save(
