@@ -43,11 +43,4 @@ public class AuthRestControllerV1 {
                 ));
     }
 
-    @GetMapping("/info")
-    public Mono<IUserDto> getUserInfo(Authentication authentication) {
-        CustomPrincipal customPrincipal = (CustomPrincipal) authentication.getPrincipal();
-
-        return userService.getUserById(customPrincipal.getId())
-                .map(userMapper::map);
-    }
 }

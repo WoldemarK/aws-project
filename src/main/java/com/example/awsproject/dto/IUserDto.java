@@ -9,6 +9,12 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+/**
+ * class {@link IUserDto}.
+ *
+ * @author Kovtynov Vladimir
+ * @version 1.0
+ */
 @Getter
 @Setter
 @ToString
@@ -21,10 +27,12 @@ public class IUserDto {
     private Long id;
     private Status status;
     private String username;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
+
     private String firstName;
     private String lastName;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+
     private boolean enabled;
     private IUserRole role;
     private LocalDate createAt;

@@ -16,4 +16,7 @@ public class IFile {
     private Long id;
     private String location;
     private Status status;
+
+    private String fileName;
+    private String owner;
 }

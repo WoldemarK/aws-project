@@ -24,24 +24,21 @@
         <mockito-core.version>5.3.1</mockito-core.version>
         <org.flywaydb.version>9.22.3</org.flywaydb.version>
         <assertj-core.version>3.24.1</assertj-core.version>
-        <aws-sdk-java.version>2.20.109</aws-sdk-java.version>
         <javax.xml.bind.version>2.3.1</javax.xml.bind.version>
         <org.postgresql.version>42.5.1</org.postgresql.version>
         <io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <io.projectreactor.version>3.5.1</io.projectreactor.version>
         <org.projectlombok.version>1.18.30</org.projectlombok.version>
-        <spring-cloud-aws-sqs.version>3.0.1</spring-cloud-aws-sqs.version>
         <r2dbc-postgresql.version>0.8.10.RELEASE</r2dbc-postgresql.version>
         <junit-jupiter-engine.version>5.10.1</junit-jupiter-engine.version>
-        <software.amazon.awscdk.version>1.204.0</software.amazon.awscdk.version>
         <com.google.code.findbugs.version>3.0.2</com.google.code.findbugs.version>
         <spring-boot-starter-test.version>3.1.1</spring-boot-starter-test.version>
-        <spring-cloud-aws-messaging.version>2.4.4</spring-cloud-aws-messaging.version>
         <spring-boot-starter-webflux.version>3.1.1</spring-boot-starter-webflux.version>
         <spring-boot-starter-data-r2dbc.version>3.1.1</spring-boot-starter-data-r2dbc.version>
         <spring-boot-starter-security.version>3.1.1</spring-boot-starter-security.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -146,31 +143,23 @@
             <version>${javax.xml.bind.version}</version>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>io.awspring.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-aws-starter</artifactId>-->
-        <!--            <version>${spring-cloud-aws-sqs.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.awspring.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-aws-sqs</artifactId>-->
-        <!--            <version>${spring-cloud-aws-sqs.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.awspring.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-aws-messaging</artifactId>-->
-        <!--            <version>${spring-cloud-aws-messaging.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>software.amazon.awssdk</groupId>-->
-        <!--            <artifactId>aws-sdk-java</artifactId>-->
-        <!--            <version>${aws-sdk-java.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>software.amazon.awscdk</groupId>-->
-        <!--            <artifactId>sqs</artifactId>-->
-        <!--            <version>${software.amazon.awscdk.version}</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.12.610</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.20.1</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
