@@ -1,5 +1,6 @@
 package com.example.awsproject.dto;
 
+import com.example.awsproject.model.IUser;
 import com.example.awsproject.model.IUserRole;
 import com.example.awsproject.model.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +11,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 /**
- * class {@link IUserDto}.
+ * class {@link IUser}.
  *
  * @author Kovtynov Vladimir
  * @version 1.0

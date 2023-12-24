@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class JwtHandler {
     private final String secret;
-
     public JwtHandler(String secret) {
         this.secret = secret;
     }

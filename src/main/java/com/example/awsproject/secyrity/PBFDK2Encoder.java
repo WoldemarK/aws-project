@@ -25,12 +25,11 @@ public class PBFDK2Encoder implements PasswordEncoder {
     public String encode(CharSequence rawPassword) {
 
         try {
-            byte [] result = SecretKeyFactory.getInstance(SECRET_KEY_INSTANCE)
+            byte[] result = SecretKeyFactory.getInstance(SECRET_KEY_INSTANCE)
                     .generateSecret(new PBEKeySpec(rawPassword.toString().toCharArray(),
                             secret.getBytes(), iteration, keyLength))
                     .getEncoded();
-            return Base64.getEncoder()
-                    .encodeToString(result);
+            return Base64.getEncoder().encodeToString(result);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }

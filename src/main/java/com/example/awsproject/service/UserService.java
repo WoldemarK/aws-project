@@ -14,7 +14,12 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+/**
+ * Service interface for class {@link UserService}.
+ *
+ * @author Kovtynov Vladimir
+ * @version 1.0
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -23,36 +28,36 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public Mono<IUser> registerUser(IUser user) {
-        return userRepository.save(
+        return this.userRepository.save(
                 user.toBuilder()
-                        .password(passwordEncoder.encode(user.getPassword()))
+                        .password(this.passwordEncoder.encode(user.getPassword()))
                         .role(IUserRole.USER)
                         .enabled(true)
                         .createAt(LocalDate.from(LocalDateTime.now()))
                         .updateAt(LocalDate.from(LocalDateTime.now()))
                         .build()
-        ).doOnSuccess(u -> {
-            log.info("IN registerUser - user: {} created", u);
-        });
+        ).doOnSuccess(u -> log.info("IN registerUser - user: {} created", u));
     }
 
     public Mono<IUser> getUserById(Long id) {
-        return userRepository.findById(id);
+        return this.userRepository.findById(id);
     }
 
     public Mono<IUser> getUserByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .onErrorMap(throwable -> new UserNotFoundException("no data available username" + username));
+        log.info("UserService method getUserByUsername {} " , username);
+        return this.userRepository.findByUsername(username)
+                .onErrorMap(throwable ->
+                        new UserNotFoundException("no data available username" + username));
     }
 
     public Mono<Void> delete(Long id) { // Mono<Void> for delete good?
         log.info("UserService, method delete {} " + id);
-        return userRepository.deleteById(id)
+        return this.userRepository.deleteById(id)
                 .onErrorMap(throwable -> new UserNotFoundException("no data available ID" + id));
     }
     public Flux<IUser>getAll(){
         log.info("UserService, method getAll {} ");
-        return userRepository.findAll()
+        return this.userRepository.findAll()
                 .onErrorMap(throwable -> new UserNotFoundException("there is no data to display"));
     }
 

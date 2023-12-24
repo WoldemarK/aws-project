@@ -12,7 +12,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-
+/**
+ * Rest Controller for class {@link AuthRestControllerV1}.
+ *
+ * @author Kovtynov Vladimir
+ * @version 1.0
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/auth")
@@ -26,13 +31,15 @@ public class AuthRestControllerV1 {
     @PostMapping("/register")
     public Mono<IUserDto> register(@RequestBody IUserDto dto) {
         IUser entity = userMapper.map(dto);
-        return userService.registerUser(entity)
+        return this.userService
+                .registerUser(entity)
                 .map(userMapper::map);
     }
 
     @PostMapping("/login")
     public Mono<AuthResponseDto> login(@RequestBody AuthRequestDto dto) {
-        return securityService.authenticate(dto.getUsername(), dto.getPassword())
+        return this.securityService
+                .authenticate(dto.getUsername(), dto.getPassword())
                 .flatMap(tokenDetails -> Mono.just(
                         AuthResponseDto.builder()
                                 .userId(tokenDetails.getUserId())

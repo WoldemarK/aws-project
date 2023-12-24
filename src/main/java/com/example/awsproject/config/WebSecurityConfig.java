@@ -16,6 +16,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
 import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers;
 import reactor.core.publisher.Mono;
+
 /**
  * Security configuration class for JWT based Spring Security application.
  *
@@ -33,8 +34,9 @@ public class WebSecurityConfig {
     private final String[] publicRoutes = {"/api/v1/auth/register", "/api/v1/auth/login"};
 
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http,
-                                                         AuthenticationManager authenticationManager) {
+    public SecurityWebFilterChain securityWebFilterChain(
+            ServerHttpSecurity http,
+            AuthenticationManager authenticationManager) {
         return http
                 .csrf().disable()
                 .authorizeExchange().pathMatchers(HttpMethod.OPTIONS).permitAll()

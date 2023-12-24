@@ -24,7 +24,6 @@ public class BearerTokenServerAuthenticationConverter implements ServerAuthentic
                 .flatMap(jwtHandler::check)
                 .flatMap(UserAuthenticationBearer::create);
     }
-
     private Mono<String> extractHeader(ServerWebExchange exchange) {
         return Mono.justOrEmpty(exchange.getRequest()
                 .getHeaders()

@@ -23,36 +23,34 @@ public class EventService {
         if (event == null) {
             throw new NotFoundException("Что то пошло не так");
         }
-        return eventRepository.save(event);
+        return this.eventRepository.save(event);
     }
 
     public Flux<Event> getAll() {
         log.info("EventService, method getAll {} ");
-        return eventRepository.findAll()
+        return this.eventRepository.findAll()
                 .onErrorMap(throwable -> new FileNotFoundException("there is no data to display"));
     }
 
     public Mono<Event> getById(Long id) {
         log.info("EventService, method getById {} " + id);
-        return eventRepository.findById(id)
+        return this.eventRepository.findById(id)
                 .onErrorMap(throwable -> new FileNotFoundException("no data available ID" + id));
     }
 
-    public void delete(Long id) {
+    public Mono<Void> deleteById(Long id) {
         log.info("EventService, method delete {} " + id);
-        eventRepository.deleteById(id)
+      return   this.eventRepository.deleteById(id)
                 .onErrorMap(throwable -> new FileNotFoundException("no data available ID" + id));
     }
 
-    public boolean update(Long id, Event event) {
+    public boolean updateById(Long id, Event event) {
         log.info("EventService, method update {} " + id + " " + event);
         if (id == 0 && event == null) {
             throw new NotFoundException("ID == 0 and event==null check the correctness of the filling");
         }
-        event = eventRepository
-                .findById(id)
-                .block();
-        eventRepository.save(event);
+        event = this.eventRepository.findById(id).block();
+        this.eventRepository.save(event);
         return true;
     }
 }

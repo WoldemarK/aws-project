@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class FileServiceTest {
 
-    private FileService s3Service = Mockito.mock(FileService.class);
+    private final FileService s3Service = Mockito.mock(FileService.class);
 
     @Test
     void testCreateBucket() {

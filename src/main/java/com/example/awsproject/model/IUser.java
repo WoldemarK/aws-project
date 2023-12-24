@@ -1,6 +1,8 @@
 package com.example.awsproject.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -24,19 +26,19 @@ public class IUser {
 
     @Id
     private Long id;
-    private Status status;
     private String username;
-    private String password;
-
-    private String firstName;
-    private String lastName;
-    private boolean enabled;
-
     @Column("role")
     private IUserRole role;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private boolean enabled;
 
-//    @Transient
-//    private List<Event> events;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Transient
+    private List<Event> events;
 
     @CreatedDate
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -44,4 +46,5 @@ public class IUser {
     @LastModifiedDate
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate updateAt;
+
 }
