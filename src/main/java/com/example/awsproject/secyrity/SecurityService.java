@@ -36,7 +36,7 @@ public class SecurityService {
         return generateToken(claims, user.getId().toString());
     }
     private TokenDetails generateToken(Map<String, Object> claims, String subject) {
-        Long expirationTimeInMillis = expirationInSeconds * 1000L;
+        long expirationTimeInMillis = expirationInSeconds * 1000L;
         Date expirationDate = new Date(new Date().getTime() + expirationTimeInMillis);
         return generateToken(expirationDate, claims, subject);
     }

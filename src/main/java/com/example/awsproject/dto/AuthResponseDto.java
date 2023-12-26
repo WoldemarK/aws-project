@@ -1,4 +1,4 @@
-package com.example.awsproject.secyrity.dto;
+package com.example.awsproject.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

@@ -36,7 +36,7 @@ public class EventRestControllerV1 {
 
     @GetMapping("/{id}")
     public Mono<Event> getById(@PathVariable Long id) {
-        log.info("EventRestControllerV1, method getById {} " + id);
+        log.info("EventRestControllerV1, method getById {} ", id);
         return this.eventService.getById(id);
     }
 

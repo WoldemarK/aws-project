@@ -32,16 +32,7 @@ public class FileRestControllerV1 {
 
     @PutMapping
     public ResponseEntity<?> download(@RequestBody  IFile file) {
-        if (StringUtils.hasText(file.getFileName())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "File name is missing");
-        }
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" +
-                file.getFileName());
-        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        headers.add("Pragma", "no-cache");
-        headers.add("Expires", "0");
         InputStreamResource resource = new InputStreamResource(fileService.downloadFile(file));
-        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+        return new ResponseEntity<>(resource,  HttpStatus.OK);
     }
 }

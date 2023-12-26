@@ -40,9 +40,12 @@ public class IUser {
     @Transient
     private List<Event> events;
 
+    @Column("created_at")
     @CreatedDate
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createAt;
+
+    @Column("updated_at")
     @LastModifiedDate
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate updateAt;
