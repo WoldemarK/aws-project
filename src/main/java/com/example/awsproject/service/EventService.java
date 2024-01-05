@@ -19,7 +19,7 @@ public class EventService {
     private final EventRepository eventRepository;
 
     public Mono<Event> create(Event event) {
-        log.info("EventService, method create {} " + event);
+        log.info("EventService, method create {} ", event);
         if (event == null) {
             throw new NotFoundException("Что то пошло не так");
         }
@@ -33,19 +33,19 @@ public class EventService {
     }
 
     public Mono<Event> getById(Long id) {
-        log.info("EventService, method getById {} " + id);
+        log.info("EventService, method getById {} ", id);
         return this.eventRepository.findById(id)
                 .onErrorMap(throwable -> new FileNotFoundException("no data available ID" + id));
     }
 
     public Mono<Void> deleteById(Long id) {
-        log.info("EventService, method delete {} " + id);
-      return   this.eventRepository.deleteById(id)
+        log.info("EventService, method delete {} ", id);
+        return this.eventRepository.deleteById(id)
                 .onErrorMap(throwable -> new FileNotFoundException("no data available ID" + id));
     }
 
     public boolean updateById(Long id, Event event) {
-        log.info("EventService, method update {} " + id + " " + event);
+        log.info("EventService, method update {} ",  id , " " + event);
         if (id == 0 && event == null) {
             throw new NotFoundException("ID == 0 and event==null check the correctness of the filling");
         }

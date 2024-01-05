@@ -33,8 +33,7 @@ public class AuthRestControllerV1 {
     public Mono<IUserDto> register(@RequestBody IUserDto dto) {
         IUser entity = userMapper.map(dto);
         return this.userService
-                .registerUser(entity)
-                .map(userMapper::map);
+                .registerUser(entity).map(userMapper::map);
     }
 
     @PostMapping("/login")

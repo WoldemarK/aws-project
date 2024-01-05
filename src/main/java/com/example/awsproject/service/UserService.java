@@ -50,8 +50,8 @@ public class UserService {
                         new UserNotFoundException("no data available username" + username));
     }
 
-    public Mono<Void> delete(Long id) { // Mono<Void> for delete good?
-        log.info("UserService, method delete {} " + id);
+    public Mono<Void> delete(Long id) {
+        log.info("UserService, method delete {} " , id);
         return this.userRepository.deleteById(id)
                 .onErrorMap(throwable -> new UserNotFoundException("no data available ID" + id));
     }

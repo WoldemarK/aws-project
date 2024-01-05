@@ -3,7 +3,6 @@ package com.example.awsproject.secyrity;
 import com.example.awsproject.secyrity.exception.UnauthorizedException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import reactor.core.publisher.Mono;
 
 import java.util.Base64;
@@ -44,5 +43,4 @@ public class JwtHandler{
             this.token = token;
         }
     }
-
 }

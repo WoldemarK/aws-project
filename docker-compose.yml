@@ -11,13 +11,3 @@ services:
       POSTGRES_DB: aws
       POSTGRES_USER: user
       POSTGRES_PASSWORD: 123
-
-  aws-project:
-    image:  aws-project:latest
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"

@@ -24,7 +24,7 @@ public class EventRestControllerV1 {
 
     @PostMapping
     public Mono<Event> create(@RequestBody Event event) {
-        log.info("EventRestControllerV1, method create {} " + event);
+        log.info("EventRestControllerV1, method create {} " , event);
         return this.eventService.create(event);
     }
 
@@ -42,13 +42,13 @@ public class EventRestControllerV1 {
 
     @DeleteMapping("/{id}")
     public Mono<Void> delete(@PathVariable Long id) {
-        log.info("EventRestControllerV1, method delete {} " + id);
+        log.info("EventRestControllerV1, method delete {} " , id);
         return this.eventService.deleteById(id);
     }
 
     @PutMapping("/{id}")
     public boolean update(@PathVariable Long id, Event event) {
-        log.info("EventRestControllerV1, method update {} " + id);
+        log.info("EventRestControllerV1, method update {} " , id);
         return this.eventService.updateById(id, event);
 
     }
