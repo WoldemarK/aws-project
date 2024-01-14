@@ -1,6 +1,5 @@
 package com.example.awsproject.rest;
 
-import com.example.awsproject.model.Event;
 import com.example.awsproject.model.IUser;
 import com.example.awsproject.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +32,7 @@ public class UserRestControllerV1 {
 
     @DeleteMapping("/{id}")
     public Mono<Void> deleteById(@PathVariable Long id) {
-        return this.userService.delete(id);
+        return this.userService.deleteById(id);
     }
 }
 

@@ -1,8 +1,8 @@
 package com.example.awsproject.dto;
 
 import com.example.awsproject.model.IUser;
-import com.example.awsproject.model.IUserRole;
-import com.example.awsproject.model.Status;
+import com.example.awsproject.model.enums.Role;
+import com.example.awsproject.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -31,11 +31,12 @@ public class IUserDto {
 
     private String firstName;
     private String lastName;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private boolean enabled;
-    private IUserRole role;
-    private LocalDate createAt;
-    private LocalDate updateAt;
+    private Role role;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 }

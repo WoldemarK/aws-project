@@ -11,4 +11,4 @@ ADMIN - полный доступ к приложению
 MODERATOR - права USER + чтение всех User + чтение/изменение/удаление всех Events + чтение/изменение/удаление всех Files 
 USER - только чтение всех своих данных + загрузка файлов для себя
 
-Технологии: Java, MySQL, Spring (Boot, Reactive Data, WebFlux, Security), AWS SDK, MySQL, Docker, JUnit, Mockito, Gradle.
+Технологии: Java, MySQL, Spring (Boot, Reactive Data, WebFlux, Security), AWS SDK, PostgresSQL, Docker, JUnit, Mockito, Maven.

@@ -4,6 +4,7 @@ import com.example.awsproject.model.Event;
 import com.example.awsproject.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,7 +25,7 @@ public class EventRestControllerV1 {
 
     @PostMapping
     public Mono<Event> create(@RequestBody Event event) {
-        log.info("EventRestControllerV1, method create {} " , event);
+        log.info("EventRestControllerV1, method create {} ", event);
         return this.eventService.create(event);
     }
 
@@ -40,15 +41,16 @@ public class EventRestControllerV1 {
         return this.eventService.getById(id);
     }
 
+    @PostAuthorize("returnObject.owner==principal.username")
     @DeleteMapping("/{id}")
     public Mono<Void> delete(@PathVariable Long id) {
-        log.info("EventRestControllerV1, method delete {} " , id);
+        log.info("EventRestControllerV1, method delete {} ", id);
         return this.eventService.deleteById(id);
     }
 
     @PutMapping("/{id}")
     public boolean update(@PathVariable Long id, Event event) {
-        log.info("EventRestControllerV1, method update {} " , id);
+        log.info("EventRestControllerV1, method update {} ", id);
         return this.eventService.updateById(id, event);
 
     }

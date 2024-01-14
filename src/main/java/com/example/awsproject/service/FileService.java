@@ -6,6 +6,7 @@ import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.example.awsproject.model.IFile;
+import com.example.awsproject.model.enums.StatusFile;
 import com.example.awsproject.repository.FileRepository;
 import com.example.awsproject.service.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -35,6 +38,7 @@ public class FileService {
             log.info("Bucket {} already exists, use a different name", bucketName);
             return;
         }
+
         this.s3Client.createBucket(bucketName);
     }
 
@@ -47,7 +51,6 @@ public class FileService {
 
     @SneakyThrows
     public void deleteBucket(String bucketName) {
-        bucketName = this.bucketName;
         this.s3Client.deleteBucket(bucketName);
         log.info("delete Bucket {}", bucketName);
 
@@ -58,12 +61,22 @@ public class FileService {
         this.s3Client.deleteObject(this.bucketName, fileName);
     }
 
-    @SneakyThrows
-    public PutObjectResult upload(IFile file) {
-        File newFile = new File(file.getLocation());
-        return this.s3Client.putObject(bucketName, file.getFileName(), newFile);
 
-    }
+   @SneakyThrows
+   public PutObjectResult upload(IFile file) {
+       File someFile = new File(file.getLocation());
+
+       file = IFile.builder()
+               .fileName(someFile.getName())
+               .location(s3Client.getBucketLocation(bucketName))
+               .status(StatusFile.CREATED)
+               .build();
+
+       fileRepository.save(file);
+
+       return this.s3Client.putObject(bucketName, file.getFileName(), someFile);
+
+   }
 
     @SneakyThrows
     public InputStream downloadFile(IFile file) {

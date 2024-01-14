@@ -16,6 +16,7 @@ public class AuthResponseDto {
 
     private Long userId;
     private String token;
+
     private Date issuedAt;
     private Date expiresAt;
 }

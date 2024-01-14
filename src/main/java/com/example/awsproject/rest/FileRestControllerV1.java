@@ -35,4 +35,5 @@ public class FileRestControllerV1 {
         InputStreamResource resource = new InputStreamResource(fileService.downloadFile(file));
         return new ResponseEntity<>(resource,  HttpStatus.OK);
     }
+
 }

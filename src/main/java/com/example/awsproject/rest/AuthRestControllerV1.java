@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+
 /**
  * Rest Controller for class {@link AuthRestControllerV1}.
  *
@@ -32,22 +33,26 @@ public class AuthRestControllerV1 {
     @PostMapping("/register")
     public Mono<IUserDto> register(@RequestBody IUserDto dto) {
         IUser entity = userMapper.map(dto);
-        return this.userService
-                .registerUser(entity).map(userMapper::map);
+        return this.userService.registerUser(entity).map(userMapper::map);
     }
 
     @PostMapping("/login")
     public Mono<AuthResponseDto> login(@RequestBody AuthRequestDto dto) {
         return this.securityService
-                .authenticate(dto.getUsername(), dto.getPassword())
-                .flatMap(tokenDetails -> Mono.just(
-                        AuthResponseDto.builder()
-                                .userId(tokenDetails.getUserId())
-                                .token(tokenDetails.getToken())
-                                .issuedAt(tokenDetails.getIssuedAt())
-                                .expiresAt(tokenDetails.getExpiresAt())
-                                .build()
-                ));
+                .authenticate
+                        (
+                                dto.getUsername(), dto.getPassword()
+                        )
+                .flatMap(
+                        tokenDetails -> Mono.just
+                                (
+                                        AuthResponseDto.builder()
+                                                .userId(tokenDetails.getUserId())
+                                                .token(tokenDetails.getToken())
+                                                .issuedAt(tokenDetails.getIssuedAt())
+                                                .expiresAt(tokenDetails.getExpiresAt())
+                                                .build()
+                                ));
     }
 
 }

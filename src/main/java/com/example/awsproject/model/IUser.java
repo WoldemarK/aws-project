@@ -1,5 +1,7 @@
 package com.example.awsproject.model;
 
+import com.example.awsproject.model.enums.Role;
+import com.example.awsproject.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -28,7 +30,7 @@ public class IUser {
     private Long id;
     private String username;
     @Column("role")
-    private IUserRole role;
+    private Role role;
     private String firstName;
     private String lastName;
     private String password;
