@@ -14,26 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * Rest Controller for class {@link FileRestControllerV1}.
+ * Rest Controller for interface {@link FileRestControllerV1}.
  *
  * @author Kovtynov Vladimir
  * @version 1.0
  */
-@RestController
-@RequiredArgsConstructor
-public class FileRestControllerV1 {
 
-    private final FileService fileService;
-
-    @PostMapping
-    public PutObjectResult upload(@RequestBody IFile file) {
-        return this.fileService.upload(file);
-    }
-
-    @PutMapping
-    public ResponseEntity<?> download(@RequestBody  IFile file) {
-        InputStreamResource resource = new InputStreamResource(fileService.downloadFile(file));
-        return new ResponseEntity<>(resource,  HttpStatus.OK);
-    }
-
+public interface FileRestControllerV1 {
+    ResponseEntity<PutObjectResult> upload(IFile file);
+    ResponseEntity<?> download(IFile file);
 }

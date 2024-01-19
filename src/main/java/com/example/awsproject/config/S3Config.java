@@ -48,6 +48,5 @@ public class S3Config {
                 .withEndpointConfiguration(
                         new AmazonS3ClientBuilder.EndpointConfiguration(serviceEndpoint, region)).build();
     }
-// ---------------------------------------------------------------------------------------------------------------------
 
 }

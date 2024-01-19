@@ -15,54 +15,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * Service interface for class {@link UserService}.
+ * Service interface for interface {@link UserService}.
  *
  * @author Kovtynov Vladimir
  * @version 1.0
  */
-@Slf4j
-@Service
-@RequiredArgsConstructor
-public class UserService {
 
-
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
-    public Mono<IUser> registerUser(IUser user) {
-        return this.userRepository.save
-                (
-                        user.toBuilder()
-                                .password(this.passwordEncoder.encode(user.getPassword()))
-                                .role(Role.USER)
-                                .enabled(true)
-                                .createAt(LocalDate.from(LocalDateTime.now()))
-                                .updateAt(LocalDate.from(LocalDateTime.now()))
-                                .build()
-                ).doOnSuccess(u -> log.info("IN registerUser - user: {} created", u));
-    }
-
-    public Mono<IUser> getUserById(Long id) {
-        return this.userRepository.findById(id);
-    }
-
-    public Mono<IUser> getUserByUsername(String username) {
-        log.info("UserService method getUserByUsername {} ", username);
-        return this.userRepository.findByUsername(username)
-                .onErrorMap(throwable ->
-                        new UserNotFoundException("no data available username" + username));
-    }
-
-    public Mono<Void> deleteById(Long id) {
-        log.info("UserService, method delete {} ", id);
-        return this.userRepository.deleteById(id)
-                .onErrorMap(throwable -> new UserNotFoundException("no data available ID" + id));
-    }
-
-    public Flux<IUser> getAll() {
-        log.info("UserService, method getAll {} ");
-        return this.userRepository.findAll()
-                .onErrorMap(throwable -> new UserNotFoundException("there is no data to display"));
-    }
+public interface UserService {
+     Mono<IUser> registerUser(IUser user);
+     Mono<IUser> getUserById(Long id);
+     Mono<IUser> getUserByUsername(String username);
+     Mono<Void> deleteById(Long id);
+     Flux<IUser> getAll();
 
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class FileServiceTest {
+public class FileServiceImplTest {
 
     private final FileService s3Service = Mockito.mock(FileService.class);
 

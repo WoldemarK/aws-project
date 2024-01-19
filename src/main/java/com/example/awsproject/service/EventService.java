@@ -10,47 +10,18 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.FileNotFoundException;
+/**
+ * Service interface for interface {@link EventService}.
+ *
+ * @author Kovtynov Vladimir
+ * @version 1.0
+ */
 
-@Slf4j
-@Service
-@RequiredArgsConstructor
-public class EventService {
+public interface EventService {
+    Mono<Event> create(Event event);
+    Flux<Event> getAll();
+    Mono<Event> getById(Long id);
+    Mono<Void> deleteById(Long id);
+    boolean updateById(Long id, Event event);
 
-    private final EventRepository eventRepository;
-
-    public Mono<Event> create(Event event) {
-        log.info("EventService, method create {} ", event);
-        if (event == null) {
-            throw new NotFoundException("Что то пошло не так");
-        }
-        return this.eventRepository.save(event);
-    }
-
-    public Flux<Event> getAll() {
-        log.info("EventService, method getAll {} ");
-        return this.eventRepository.findAll()
-                .onErrorMap(throwable -> new FileNotFoundException("there is no data to display"));
-    }
-
-    public Mono<Event> getById(Long id) {
-        log.info("EventService, method getById {} ", id);
-        return this.eventRepository.findById(id)
-                .onErrorMap(throwable -> new FileNotFoundException("no data available ID" + id));
-    }
-
-    public Mono<Void> deleteById(Long id) {
-        log.info("EventService, method delete {} ", id);
-        return this.eventRepository.deleteById(id)
-                .onErrorMap(throwable -> new FileNotFoundException("no data available ID" + id));
-    }
-
-    public boolean updateById(Long id, Event event) {
-        log.info("EventService, method update {} ",  id , " " + event);
-        if (id == 0 && event == null) {
-            throw new NotFoundException("ID == 0 and event==null check the correctness of the filling");
-        }
-        event = this.eventRepository.findById(id).block();
-        this.eventRepository.save(event);
-        return true;
-    }
 }

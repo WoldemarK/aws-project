@@ -10,48 +10,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Rest Controller for class {@link Event}.
+ * Rest Controller for interface {@link Event}.
  *
  * @author Kovtynov Vladimir
  * @version 1.0
  */
-@Slf4j
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/api/v1/events/")
-public class EventRestControllerV1 {
 
-    private final EventService eventService;
+public interface EventRestControllerV1 {
+    Mono<Event> create(Event event);
 
-    @PostMapping
-    public Mono<Event> create(@RequestBody Event event) {
-        log.info("EventRestControllerV1, method create {} ", event);
-        return this.eventService.create(event);
-    }
+    Flux<Event> getAll();
 
-    @GetMapping
-    public Flux<Event> getAll() {
-        log.info("EventRestControllerV1, method getAll {} ");
-        return this.eventService.getAll();
-    }
+    Mono<Event> getById(Long id);
 
-    @GetMapping("/{id}")
-    public Mono<Event> getById(@PathVariable Long id) {
-        log.info("EventRestControllerV1, method getById {} ", id);
-        return this.eventService.getById(id);
-    }
+    Mono<Void> delete(Long id);
 
-    @PostAuthorize("returnObject.owner==principal.username")
-    @DeleteMapping("/{id}")
-    public Mono<Void> delete(@PathVariable Long id) {
-        log.info("EventRestControllerV1, method delete {} ", id);
-        return this.eventService.deleteById(id);
-    }
-
-    @PutMapping("/{id}")
-    public boolean update(@PathVariable Long id, Event event) {
-        log.info("EventRestControllerV1, method update {} ", id);
-        return this.eventService.updateById(id, event);
-
-    }
+    boolean update(Long id, Event event);
 }
