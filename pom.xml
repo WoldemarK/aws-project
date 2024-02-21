@@ -25,7 +25,7 @@
         <org.flywaydb.version>9.22.3</org.flywaydb.version>
         <assertj-core.version>3.24.1</assertj-core.version>
         <javax.xml.bind.version>2.3.1</javax.xml.bind.version>
-        <org.postgresql.version>42.5.1</org.postgresql.version>
+        <org.postgresql.version>42.7.2</org.postgresql.version>
         <io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <io.projectreactor.version>3.5.1</io.projectreactor.version>
