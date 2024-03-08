@@ -28,10 +28,12 @@ public class EventServiceImpl implements EventService {
     @Override
     public Mono<Event> create(Event event) {
         log.info("EventService, method create {} ", event);
-        if (event == null) {
-            throw new NotFoundException("Что то пошло не так");
+        Event add = eventRepository.findById(event.getId()).block();
+
+        if (add == null) {
+            eventRepository.save(event);
         }
-        return this.eventRepository.save(event);
+        return null;
     }
 
     @Override
